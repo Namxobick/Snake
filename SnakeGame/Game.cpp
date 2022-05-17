@@ -1,5 +1,19 @@
 #include "Game.h"
 
+Game::Game(int width, int height, int startLengthSnake, char headStyle, char bodyStyle)
+{
+    do {
+        system("cls");
+        _gameMap = GameMap(width, height);
+        _snake = Snake(startLengthSnake, headStyle, bodyStyle);
+        _food = Food();
+        SpawnFood();
+        _score = 0;
+        _speed = StartSpeed;
+        Start();
+    } while (ReGame());
+}
+
 void Game::SpawnFood()
 {
     bool reGenerateFood;
@@ -13,22 +27,6 @@ void Game::SpawnFood()
             reGenerateFood = false;
 
     } while (reGenerateFood);
-}
-
-Game::Game()
-{
-    do {
-        system("cls");
-        _gameMap = GameMap(50, 25);
-        _snake = Snake(5, '+', '-');
-        _food = Food();
-        SpawnFood();
-        _score = 0;
-        _speed = StartSpeed;
-
-        Start();
-
-    } while (ReGame());
 }
 
 void Game::ClearScreen()
@@ -73,8 +71,8 @@ bool Game::ReGame()
     std::cout << "     Game Over     " << std::endl;
     std::cout << "Replay? (y / n) " << std::endl;
     char c;
-    bool isvalid = false
-        ;
+    bool isvalid = false;
+
     do {
         std::cin >> c;
         if (c == 'y')
@@ -121,7 +119,6 @@ char Game::Controls()
         return 's';
     else if (GetAsyncKeyState(VK_RIGHT) && _snake.GetDirection() != 'a')
         return 'd';
-    else if (GetAsyncKeyState(VK_LEFT) && _snake.GetDirection() != 'a')
+    else if (GetAsyncKeyState(VK_LEFT) && _snake.GetDirection() != 'd')
         return 'a';
 }
-

@@ -2,7 +2,7 @@
 
 int main()
 {
-    Game game;
+    Game game(50, 25, 5, '+', '-');
 
     return 0;
 }

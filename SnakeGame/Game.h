@@ -17,7 +17,7 @@ private:
 	void SpawnFood();
 
 public:
-	Game();
+	Game(int width, int height, int startLengthSnake, char headStyle, char bodyStyle);
 
 	void ClearScreen();
 	void CheckEating();
